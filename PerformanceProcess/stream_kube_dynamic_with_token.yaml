@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: stream-dynamic
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: stream-dynamic
+      labels:
+        app: stream-dynamic
+    spec:
+      containers:
+      - name: stream
+        image: tyacbovi/sourcestream:1.0
+        env:
+        - name: KAFKA_ADDRESS
+          value: kafka.kafka:9092
+        - name: SCHEMA_REGISTRY_IP
+          value: http://schema-registry.kafka:8081
+        - name: SOURCE_NAME
+          value: TOKEN

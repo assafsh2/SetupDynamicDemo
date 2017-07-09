@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: engine-performance-process
+  namespace: default
+spec:
+  template:
+    metadata:
+      name: engine-performance-process
+      labels:
+        app: engine-performance-process
+    spec:
+      containers:
+      - name: engine-performance-process
+        image: docker.io/assafsh2/engineperformanceprocess
+        env:
+        - name: KAFKA_ADDRESS
+          value: kafka.kafka:9092
+        - name: SCHEMA_REGISTRY_ADDRESS
+          value: http://schema-registry.kafka:8081
+        - name: SCHEMA_REGISTRY_IDENTITY
+          value: "2010"
+        - name: PRINT_TO_FILE
+          value: "false"
+        - name: SEC_TO_DELAY
+          value: "5"
+        - name: SOURCE_NAME
+          value: "source1"
+        - name: JAVA_OPTIONS
+          value: "-Xmx1024m"
+      restartPolicy: Never

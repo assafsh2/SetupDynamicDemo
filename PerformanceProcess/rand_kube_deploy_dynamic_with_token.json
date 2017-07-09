@@ -1,0 +1,39 @@
+{
+	"apiVersion": "extensions/v1beta1",
+	"kind": "Deployment",
+	"metadata": {
+		"name": "rand-gen-dynamic",
+		"namespace": "default"
+	},
+	"spec": {
+		"replicas": 1,
+		"template": {
+			"metadata": {
+				"name": "rand-gen-dynamic",
+				"labels": {
+					"app": "rand-gen-dynamic"
+				}
+			},
+			"spec": {
+				"containers": [
+					{
+						"name": "rand-gen",
+						"image": "tyacbovi/detectiongenerator:1.0",
+						"command": [
+							"python"
+						],
+						"args": [
+							"/usr/local/src/DetectionGenerator-master/DetectionGenerator/__main__.py",
+							"-b",
+							"kafka.kafka:9092",
+							"-s",
+							"SOURCE_NAME",
+							"-n",
+							"NUM_OF_UPDATES"
+						]
+					}
+				]
+			}
+		}
+	}
+}
