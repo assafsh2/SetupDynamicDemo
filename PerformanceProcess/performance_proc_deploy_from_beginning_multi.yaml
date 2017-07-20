@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: engine-performance-process-from-begin-multi
+  namespace: default
+spec:
+  template:
+    metadata:
+      name: engine-performance-process-from-begin-multi
+      labels:
+        app: engine-performance-process-from-begin-multi
+    spec:
+      containers:
+      - name: engine-performance-process-from-begin-multi
+        image: docker.io/assafsh2/engineperformanceprocess
+        env:
+        - name: KAFKA_ADDRESS
+          value: kafka.kafka:9092
+        - name: SCHEMA_REGISTRY_ADDRESS
+          value: http://schema-registry.kafka:8081
+        - name: SCHEMA_REGISTRY_IDENTITY
+          value: "2010"
+        - name: PRINT_TO_FILE
+          value: "false"
+        - name: SEC_TO_DELAY
+          value: "0"
+        - name: SOURCE_NAME
+          value: "source0"
+        - name: JAVA_OPTIONS
+          value: "-Xmx2024m"
+        - name: START_FROM_BEGINNING
+          value: "true"
+        - name: MULTI_MESSAGES
+          value: "true"
+        - name: NUM_OF_CYCLES
+          value: "4"
+        - name: NUM_OF_UPDATES
+          value: "4"
+      restartPolicy: Never
