@@ -13,20 +13,11 @@ spec:
     spec:
       containers:
       - name: stream
-        image: assafsh2/interfaceconverter:latest
+        image: assafsh2/interfacestream:latest
         env:
         - name: KAFKA_ADDRESS
           value: kafka.kafka:9092
         - name: SCHEMA_REGISTRY_IP
           value: http://schema-registry.kafka:8081
-        - name: SCHEMA_REGISTRY_ADDRESS
-          value: http://schema-registry.kafka:8081
-        - name: SCHEMA_REGISTRY_IDENTITY
-          value: "2010"
-        - name: DEBUG_LEVEL
-          value: ERROR
-        - name: INTERFACE_NAME
-          value: TOKEN
         - name: SOURCE_NAME
           value: TOKEN
-

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: performance-process-volume
+  labels:
+    app: engine-performance-process
+    type: output
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 4Gi
+  hostPath:
+    path: /tmp/performance-process-output

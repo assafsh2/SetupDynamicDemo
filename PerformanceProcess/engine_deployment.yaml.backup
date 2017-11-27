@@ -29,10 +29,6 @@ spec:
           value: "false"
         - name: JAVA_OPTIONS
           value: "-Xmx5024m"
-        - name: CONF_IND
-          value: "tru"
         ports:
         - containerPort: 5001
           name: "jvm-debug"
-      nodeSelector:
-        type: MASTER

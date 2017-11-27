@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: super-best-engine
-        image: amit688/entities-engine:latest
+        image: amit688/entities-engine:mail_room
         env:
         - name: KAFKA_ADDRESS
           value: kafka.kafka:9092
@@ -22,17 +22,19 @@ spec:
         - name: SCHEMA_REGISTRY_IDENTITY
           value: "2010"
         - name: SINGLE_SOURCE_PER_TOPIC
-          value: "false"
+          value: "true"
         - name: SINGLE_SINK
-          value: "false"
+          value: "true"
         - name: KAMON_ENABLED
           value: "false"
         - name: JAVA_OPTIONS
-          value: "-Xmx5024m"
-        - name: CONF_IND
-          value: "tru"
+          value: "-Xmx8g"
+        - name: DEBUG_LEVEL
+          value: "DEBUG"
+        - name: INTERFACES_NAME
+          value: source0,source1
+        - name: AKKA_THREAD_POOL_SIZE
+          value: "1000"
         ports:
         - containerPort: 5001
           name: "jvm-debug"
-      nodeSelector:
-        type: MASTER

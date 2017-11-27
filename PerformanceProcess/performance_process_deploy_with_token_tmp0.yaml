@@ -1,0 +1,56 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: engine-performance-process
+  namespace: default
+spec:
+  template:
+    metadata:
+      name: engine-performance-process
+      labels:
+        app: engine-performance-process
+    spec:
+      volumes:
+        - name: pv-storage
+          persistentVolumeClaim:
+           claimName: performance-process-claim
+      containers:
+      - name: engine-performance-process
+        image: docker.io/assafsh2/engineperformanceprocess:merge_branch
+        volumeMounts:
+         - mountPath: "/tmp/performance-process-output"
+           name: pv-storage
+        env:
+        - name: KAFKA_ADDRESS
+          value: kafka.kafka:9092
+        - name: SCHEMA_REGISTRY_ADDRESS
+          value: http://schema-registry.kafka:8081
+        - name: SCHEMA_REGISTRY_IDENTITY
+          value: "2010"
+        - name: PRINT_TO_FILE
+          value: "true"
+        - name: FILE_LOCATION
+          value: "/tmp/performance-process-output"
+        - name: DEBUG_LEVEL
+          value: "DEBUG"
+        - name: SEC_TO_DELAY
+          value: "0"
+        - name: SOURCE_NAME
+          value: "source0"
+        - name: JAVA_OPTIONS
+          value: "-Xmx6024m"
+        - name: NUM_OF_CYCLES
+          value: "0"
+        - name: NUM_OF_UPDATES_PER_CYCLE
+          value: "3"
+        - name: DURATION
+          value: "5"
+        - name: INTERVAL
+          value: "1000"
+        - name: NUM_OF_INTERFACES
+          value: "5"
+        - name: NUM_OF_UPDATES
+          value: "100"
+        - name: ACTIVITY
+          value: "CREATE"
+      restartPolicy: Never

@@ -28,4 +28,6 @@ spec:
           value: "source1"
         - name: JAVA_OPTIONS
           value: "-Xmx1024m"
+        - name: START_FROM_BEGINNING
+          value: "false"
       restartPolicy: Never

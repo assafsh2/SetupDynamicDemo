@@ -25,7 +25,7 @@ spec:
         - name: SEC_TO_DELAY
           value: "0"
         - name: SOURCE_NAME
-          value: "source0"
+          value: "source4"
         - name: JAVA_OPTIONS
           value: "-Xmx1024m"
         - name: START_FROM_BEGINNING

@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: engine-performance-process-from-begin-multi
-        image: docker.io/assafsh2/engineperformanceprocess
+        image: docker.io/assafsh2/engineperformanceprocess:duration_branch
         env:
         - name: KAFKA_ADDRESS
           value: kafka.kafka:9092
@@ -33,7 +33,11 @@ spec:
         - name: MULTI_MESSAGES
           value: "true"
         - name: NUM_OF_CYCLES
-          value: "4"
+          value: "0"
         - name: NUM_OF_UPDATES
-          value: "4"
+          value: "10"
+        - name: DURATION
+          value: "1"
+        - name: INTERVAL
+          value: "10000"
       restartPolicy: Never

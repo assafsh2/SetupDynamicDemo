@@ -1,15 +1,15 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: stream-dynamic
+  name: stream-dynamic0
   namespace: default
 spec:
   replicas: 1
   template:
     metadata:
-      name: stream-dynamic
+      name: stream-dynamic0
       labels:
-        app: stream-dynamic
+        app: stream-dynamic0
     spec:
       containers:
       - name: stream
@@ -26,7 +26,7 @@ spec:
         - name: DEBUG_LEVEL
           value: ERROR
         - name: INTERFACE_NAME
-          value: TOKEN
+          value: source0
         - name: SOURCE_NAME
-          value: TOKEN
+          value: source0
 
